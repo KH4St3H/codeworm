@@ -1,0 +1,21 @@
+fn fib(n)
+begin
+    print "fib", n;
+    if n == 2 then
+    begin 
+        print "two seen", n;
+        return 1;
+    end
+    if n == 1 then return 1;
+    if n == 0 then
+    begin 
+        print "here", n;
+        return 0;
+    end
+    print "there", n;
+    return fib(n - 1) + fib(n - 2);
+end
+
+c = fib(10);
+print c;
+
