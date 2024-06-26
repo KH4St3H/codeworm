@@ -1,4 +1,4 @@
-# Generated from nsc.g4 by ANTLR 4.13.1
+# Generated from nsc.g4 by ANTLR 4.13.0
 from antlr4 import *
 if "." in __name__:
     from .nscParser import nscParser
@@ -8,6 +8,11 @@ else:
 # This class defines a complete generic visitor for a parse tree produced by nscParser.
 
 class nscVisitor(ParseTreeVisitor):
+
+    # Visit a parse tree produced by nscParser#function_arg.
+    def visitFunction_arg(self, ctx:nscParser.Function_argContext):
+        return self.visitChildren(ctx)
+
 
     # Visit a parse tree produced by nscParser#program.
     def visitProgram(self, ctx:nscParser.ProgramContext):
@@ -96,6 +101,11 @@ class nscVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by nscParser#loop_statement.
     def visitLoop_statement(self, ctx:nscParser.Loop_statementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by nscParser#function_declration.
+    def visitFunction_declration(self, ctx:nscParser.Function_declrationContext):
         return self.visitChildren(ctx)
 
 

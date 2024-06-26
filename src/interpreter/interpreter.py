@@ -1,11 +1,9 @@
-# interpreter.py
-
-
 from antlr4 import InputStream, CommonTokenStream
 from grammar.nscLexer import nscLexer
 from grammar.nscParser import nscParser
 from grammar.nscVisitor import nscVisitor
 from .expr_visitor import NscVisitorImpl
+from .function import Function
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
@@ -14,6 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 class Interpreter(NscVisitorImpl, nscVisitor):
     def __init__(self):
         self.variables = {}
+        self.functions = {}
 
     def visitIdentifier(self, ctx):
         if ctx.ID():
@@ -83,6 +82,17 @@ class Interpreter(NscVisitorImpl, nscVisitor):
                 else:
                     output.append("undefined")
             self.print_output(" ".join(output))
+
+    # def visitFunction_declration(self, ctx: nscParser.Function_declrationContext):
+    #     func_name = ctx.ID().getText()
+    #     if func_name in self.functions:
+    #         raise NameError(f"Function with name {func_name} already declared.")
+    #
+    #
+    #     for arg in ctx.function_arg():
+    #
+    #     # self.functions[]
+
 
     def visitID(self, ctx):
         var_name = ctx.getText()
