@@ -113,7 +113,7 @@ class nscParser ( Parser ):
     RULE_statements = 2
     RULE_statement = 3
     RULE_expr = 4
-    RULE_cumTerm = 5
+    RULE_comparisonTerm = 5
     RULE_term = 6
     RULE_factor = 7
     RULE_exponent = 8
@@ -129,17 +129,18 @@ class nscParser ( Parser ):
     RULE_function_declration_statement = 18
     RULE_function_call_statement = 19
     RULE_return_statement = 20
-    RULE_cumopr = 21
+    RULE_comparisonopr = 21
     RULE_multiplicative = 22
     RULE_additive = 23
 
     ruleNames =  [ "function_arg", "program", "statements", "statement", 
-                   "expr", "cumTerm", "term", "factor", "exponent", "function_call", 
-                   "assign_statement", "begin_end_statement", "print_simple", 
-                   "print_literal", "if_else_statement", "while_statement", 
-                   "for_statement", "loop_statement", "function_declration_statement", 
-                   "function_call_statement", "return_statement", "cumopr", 
-                   "multiplicative", "additive" ]
+                   "expr", "comparisonTerm", "term", "factor", "exponent", 
+                   "function_call", "assign_statement", "begin_end_statement", 
+                   "print_simple", "print_literal", "if_else_statement", 
+                   "while_statement", "for_statement", "loop_statement", 
+                   "function_declration_statement", "function_call_statement", 
+                   "return_statement", "comparisonopr", "multiplicative", 
+                   "additive" ]
 
     EOF = Token.EOF
     T__0=1
@@ -506,18 +507,18 @@ class nscParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def cumTerm(self, i:int=None):
+        def comparisonTerm(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(nscParser.CumTermContext)
+                return self.getTypedRuleContexts(nscParser.ComparisonTermContext)
             else:
-                return self.getTypedRuleContext(nscParser.CumTermContext,i)
+                return self.getTypedRuleContext(nscParser.ComparisonTermContext,i)
 
 
-        def cumopr(self, i:int=None):
+        def comparisonopr(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(nscParser.CumoprContext)
+                return self.getTypedRuleContexts(nscParser.ComparisonoprContext)
             else:
-                return self.getTypedRuleContext(nscParser.CumoprContext,i)
+                return self.getTypedRuleContext(nscParser.ComparisonoprContext,i)
 
 
         def getRuleIndex(self):
@@ -547,16 +548,16 @@ class nscParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 71
-            self.cumTerm()
+            self.comparisonTerm()
             self.state = 77
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     self.state = 72
-                    self.cumopr()
+                    self.comparisonopr()
                     self.state = 73
-                    self.cumTerm() 
+                    self.comparisonTerm() 
                 self.state = 79
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
@@ -570,7 +571,7 @@ class nscParser ( Parser ):
         return localctx
 
 
-    class CumTermContext(ParserRuleContext):
+    class ComparisonTermContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -592,29 +593,29 @@ class nscParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return nscParser.RULE_cumTerm
+            return nscParser.RULE_comparisonTerm
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterCumTerm" ):
-                listener.enterCumTerm(self)
+            if hasattr( listener, "enterComparisonTerm" ):
+                listener.enterComparisonTerm(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitCumTerm" ):
-                listener.exitCumTerm(self)
+            if hasattr( listener, "exitComparisonTerm" ):
+                listener.exitComparisonTerm(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitCumTerm" ):
-                return visitor.visitCumTerm(self)
+            if hasattr( visitor, "visitComparisonTerm" ):
+                return visitor.visitComparisonTerm(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def cumTerm(self):
+    def comparisonTerm(self):
 
-        localctx = nscParser.CumTermContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 10, self.RULE_cumTerm)
+        localctx = nscParser.ComparisonTermContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 10, self.RULE_comparisonTerm)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 80
@@ -1728,7 +1729,7 @@ class nscParser ( Parser ):
         return localctx
 
 
-    class CumoprContext(ParserRuleContext):
+    class ComparisonoprContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1737,29 +1738,29 @@ class nscParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return nscParser.RULE_cumopr
+            return nscParser.RULE_comparisonopr
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterCumopr" ):
-                listener.enterCumopr(self)
+            if hasattr( listener, "enterComparisonopr" ):
+                listener.enterComparisonopr(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitCumopr" ):
-                listener.exitCumopr(self)
+            if hasattr( listener, "exitComparisonopr" ):
+                listener.exitComparisonopr(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitCumopr" ):
-                return visitor.visitCumopr(self)
+            if hasattr( visitor, "visitComparisonopr" ):
+                return visitor.visitComparisonopr(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def cumopr(self):
+    def comparisonopr(self):
 
-        localctx = nscParser.CumoprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 42, self.RULE_cumopr)
+        localctx = nscParser.ComparisonoprContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 42, self.RULE_comparisonopr)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)

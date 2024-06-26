@@ -27,8 +27,8 @@ statement
 
 
 // Expression with separated operators
-expr: cumTerm (cumopr cumTerm)*; 
-cumTerm: term (additive term)*;
+expr: comparisonTerm (comparisonopr comparisonTerm)*; 
+comparisonTerm: term (additive term)*;
 term: factor (multiplicative factor)*;
 factor: exponent ('^' exponent)*;
 exponent: '(' expr ')' # ParenthesizedExpression
@@ -53,6 +53,6 @@ function_call_statement: function_call ';';
 return_statement: 'return' expr ';';
 
 // Operator rules
-cumopr : '>' | '<=' | '>=' | '==' | '!=' | '<' ;
+comparisonopr : '>' | '<=' | '>=' | '==' | '!=' | '<' ;
 multiplicative : '*' | '/' | '%';
 additive : '+' | '-' ;

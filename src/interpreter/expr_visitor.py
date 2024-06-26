@@ -68,15 +68,15 @@ class NscVisitorImpl:
             return left != right
 
     def visitExpr(self, ctx):
-        cumterms = list(map(self.visitCumTerm, ctx.cumTerm()))
-        left = cumterms[0]
-        if len(cumterms) < 2:
+        comparisonterms = list(map(self.visit, ctx.comparisonTerm()))
+        left = comparisonterms[0]
+        if len(comparisonterms) < 2:
             return left
-        for d, c in enumerate(ctx.cumopr()):
-            left = self.getBool(left, cumterms[d + 1], c.getText())
+        for d, c in enumerate(ctx.comparisonopr()):
+            left = self.getBool(left, comparisonterms[d + 1], c.getText())
         return left
 
-    def visitCumTerm(self, ctx):
+    def visitComparisonTerm(self, ctx):
         if ctx is None:
             return 0
         terms = ctx.term()

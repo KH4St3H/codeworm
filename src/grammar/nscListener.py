@@ -53,12 +53,12 @@ class nscListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by nscParser#cumTerm.
-    def enterCumTerm(self, ctx:nscParser.CumTermContext):
+    # Enter a parse tree produced by nscParser#comparisonTerm.
+    def enterComparisonTerm(self, ctx:nscParser.ComparisonTermContext):
         pass
 
-    # Exit a parse tree produced by nscParser#cumTerm.
-    def exitCumTerm(self, ctx:nscParser.CumTermContext):
+    # Exit a parse tree produced by nscParser#comparisonTerm.
+    def exitComparisonTerm(self, ctx:nscParser.ComparisonTermContext):
         pass
 
 
@@ -233,12 +233,12 @@ class nscListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by nscParser#cumopr.
-    def enterCumopr(self, ctx:nscParser.CumoprContext):
+    # Enter a parse tree produced by nscParser#comparisonopr.
+    def enterComparisonopr(self, ctx:nscParser.ComparisonoprContext):
         pass
 
-    # Exit a parse tree produced by nscParser#cumopr.
-    def exitCumopr(self, ctx:nscParser.CumoprContext):
+    # Exit a parse tree produced by nscParser#comparisonopr.
+    def exitComparisonopr(self, ctx:nscParser.ComparisonoprContext):
         pass
 
 

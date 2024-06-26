@@ -84,7 +84,7 @@ program
 statements
 statement
 expr
-cumTerm
+comparisonTerm
 term
 factor
 exponent
@@ -100,7 +100,7 @@ loop_statement
 function_declration_statement
 function_call_statement
 return_statement
-cumopr
+comparisonopr
 multiplicative
 additive
 

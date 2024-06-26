@@ -34,8 +34,8 @@ class nscVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by nscParser#cumTerm.
-    def visitCumTerm(self, ctx:nscParser.CumTermContext):
+    # Visit a parse tree produced by nscParser#comparisonTerm.
+    def visitComparisonTerm(self, ctx:nscParser.ComparisonTermContext):
         return self.visitChildren(ctx)
 
 
@@ -134,8 +134,8 @@ class nscVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by nscParser#cumopr.
-    def visitCumopr(self, ctx:nscParser.CumoprContext):
+    # Visit a parse tree produced by nscParser#comparisonopr.
+    def visitComparisonopr(self, ctx:nscParser.ComparisonoprContext):
         return self.visitChildren(ctx)
 
 
