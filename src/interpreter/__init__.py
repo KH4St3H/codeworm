@@ -1,3 +1,3 @@
-from .interpreter import nscInterpreter
+from .interpreter import Interpreter
 
-__all__ = [nscInterpreter]
+__all__ = [Interpreter]

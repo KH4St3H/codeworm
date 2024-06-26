@@ -1,6 +1,7 @@
 # interpreter.py
 
-from antlr4 import *
+
+from antlr4 import InputStream, CommonTokenStream
 from grammar.nscLexer import nscLexer
 from grammar.nscParser import nscParser
 from grammar.nscVisitor import nscVisitor
@@ -9,7 +10,8 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-class nscInterpreter(NscVisitorImpl, nscVisitor):
+
+class Interpreter(NscVisitorImpl, nscVisitor):
     def __init__(self):
         self.variables = {}
 
@@ -96,7 +98,7 @@ class nscInterpreter(NscVisitorImpl, nscVisitor):
 
     def print_output(self, output):
         print(output)  # Placeholder for GUI output function
-    
+
     @staticmethod
     def run_code(code):
         input_stream = InputStream(code)
@@ -105,7 +107,7 @@ class nscInterpreter(NscVisitorImpl, nscVisitor):
         parser = nscParser(stream)
         tree = parser.program()
 
-        interpreter = nscInterpreter()
+        interpreter = Interpreter()
 
         try:
             interpreter.visit(tree)
