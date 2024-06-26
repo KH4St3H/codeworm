@@ -64,6 +64,21 @@ class nscVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by nscParser#FunctionCall.
+    def visitFunctionCall(self, ctx:nscParser.FunctionCallContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by nscParser#UnaryMinus.
+    def visitUnaryMinus(self, ctx:nscParser.UnaryMinusContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by nscParser#function_call.
+    def visitFunction_call(self, ctx:nscParser.Function_callContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by nscParser#assign_statement.
     def visitAssign_statement(self, ctx:nscParser.Assign_statementContext):
         return self.visitChildren(ctx)
@@ -104,8 +119,18 @@ class nscVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by nscParser#function_declration.
-    def visitFunction_declration(self, ctx:nscParser.Function_declrationContext):
+    # Visit a parse tree produced by nscParser#function_declration_statement.
+    def visitFunction_declration_statement(self, ctx:nscParser.Function_declration_statementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by nscParser#function_call_statement.
+    def visitFunction_call_statement(self, ctx:nscParser.Function_call_statementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by nscParser#return_statement.
+    def visitReturn_statement(self, ctx:nscParser.Return_statementContext):
         return self.visitChildren(ctx)
 
 

@@ -107,6 +107,33 @@ class nscListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by nscParser#FunctionCall.
+    def enterFunctionCall(self, ctx:nscParser.FunctionCallContext):
+        pass
+
+    # Exit a parse tree produced by nscParser#FunctionCall.
+    def exitFunctionCall(self, ctx:nscParser.FunctionCallContext):
+        pass
+
+
+    # Enter a parse tree produced by nscParser#UnaryMinus.
+    def enterUnaryMinus(self, ctx:nscParser.UnaryMinusContext):
+        pass
+
+    # Exit a parse tree produced by nscParser#UnaryMinus.
+    def exitUnaryMinus(self, ctx:nscParser.UnaryMinusContext):
+        pass
+
+
+    # Enter a parse tree produced by nscParser#function_call.
+    def enterFunction_call(self, ctx:nscParser.Function_callContext):
+        pass
+
+    # Exit a parse tree produced by nscParser#function_call.
+    def exitFunction_call(self, ctx:nscParser.Function_callContext):
+        pass
+
+
     # Enter a parse tree produced by nscParser#assign_statement.
     def enterAssign_statement(self, ctx:nscParser.Assign_statementContext):
         pass
@@ -179,12 +206,30 @@ class nscListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by nscParser#function_declration.
-    def enterFunction_declration(self, ctx:nscParser.Function_declrationContext):
+    # Enter a parse tree produced by nscParser#function_declration_statement.
+    def enterFunction_declration_statement(self, ctx:nscParser.Function_declration_statementContext):
         pass
 
-    # Exit a parse tree produced by nscParser#function_declration.
-    def exitFunction_declration(self, ctx:nscParser.Function_declrationContext):
+    # Exit a parse tree produced by nscParser#function_declration_statement.
+    def exitFunction_declration_statement(self, ctx:nscParser.Function_declration_statementContext):
+        pass
+
+
+    # Enter a parse tree produced by nscParser#function_call_statement.
+    def enterFunction_call_statement(self, ctx:nscParser.Function_call_statementContext):
+        pass
+
+    # Exit a parse tree produced by nscParser#function_call_statement.
+    def exitFunction_call_statement(self, ctx:nscParser.Function_call_statementContext):
+        pass
+
+
+    # Enter a parse tree produced by nscParser#return_statement.
+    def enterReturn_statement(self, ctx:nscParser.Return_statementContext):
+        pass
+
+    # Exit a parse tree produced by nscParser#return_statement.
+    def exitReturn_statement(self, ctx:nscParser.Return_statementContext):
         pass
 
 

@@ -3,21 +3,24 @@ from grammar.nscLexer import nscLexer
 from grammar.nscParser import nscParser
 from grammar.nscVisitor import nscVisitor
 from .expr_visitor import NscVisitorImpl
-from .function import Function
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
 
 class Interpreter(NscVisitorImpl, nscVisitor):
-    def __init__(self):
-        self.variables = {}
-        self.functions = {}
+    def __init__(self, global_variables={}, local_variables={}, functions={}):
+        self.global_variables = global_variables
+        self.variables = global_variables
+        self.variables.update(local_variables)
+        self.functions = functions
+        self.inside_function = False
+        self.has_returned = False
+        self.function_return_value = None
 
     def visitIdentifier(self, ctx):
         if ctx.ID():
             return self.variables.get(ctx.ID().getText(), None)
-        raise TypeError("Not Implemented Error")
 
     def visitProgram(self, ctx):
         return self.visitStatements(ctx.statements())
@@ -27,6 +30,9 @@ class Interpreter(NscVisitorImpl, nscVisitor):
             self.visitStatement(statement)
 
     def visitStatement(self, ctx):
+        if self.inside_function and self.has_returned:
+            return
+
         if c := ctx.assign_statement():
             var_name = c.ID().getText()
             value = self.visitExpr(c.expr())
@@ -83,16 +89,59 @@ class Interpreter(NscVisitorImpl, nscVisitor):
                     output.append("undefined")
             self.print_output(" ".join(output))
 
-    # def visitFunction_declration(self, ctx: nscParser.Function_declrationContext):
-    #     func_name = ctx.ID().getText()
-    #     if func_name in self.functions:
-    #         raise NameError(f"Function with name {func_name} already declared.")
-    #
-    #
-    #     for arg in ctx.function_arg():
-    #
-    #     # self.functions[]
+        elif c := ctx.function_declration_statement():
+            self.visit(c)
 
+        elif c := ctx.function_call_statement():
+            self.visit(c)
+
+        elif c := ctx.return_statement():
+            self.visit(c)
+
+    def visit(self, tree):
+        if self.has_returned:
+            return self.function_return_value
+        return super().visit(tree)
+
+    def visitFunction_declration_statement(self, ctx: nscParser.Function_declration_statementContext):
+        from .function import Function
+        func_name = ctx.ID().getText()
+        if func_name in self.functions:
+            raise NameError(f"Function with name {func_name} already declared.")
+
+        args = []
+        for argctx in ctx.function_arg():
+            args.append(argctx.ID().getText())
+
+        func = Function(func_name, self, ctx.begin_end_statement().statements(), tuple(args))
+        self.functions[func_name] = func
+
+    def visitReturn_statement(self, ctx: nscParser.Return_statementContext):
+        if not self.inside_function:
+            raise SyntaxError('return statement should be used inside a function')
+        if self.has_returned:
+            return self.function_return_value
+        result = self.visit(ctx.expr())
+        self.function_return_value = result
+        self.has_returned = True
+        return result
+
+    def visitFunction_call_statement(self, ctx: nscParser.Function_call_statementContext):
+        return self.visit(ctx.function_call())
+
+    def visitFunction_call(self, ctx: nscParser.Function_callContext):
+        func_name = ctx.ID().getText()
+        function = self.functions.get(func_name)
+        if not function:
+            raise NameError(f'Funcion "{func_name}" does not exist')
+        args = []
+        for c in ctx.expr():
+            args.append(self.visit(c))
+
+        return function.call(args)
+
+    def visitFunctionCall(self, ctx: nscParser.FunctionCallContext):
+        return self.visit(ctx.function_call())
 
     def visitID(self, ctx):
         var_name = ctx.getText()
